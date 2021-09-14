@@ -253,16 +253,30 @@ const getDiffScreenshotName = (args) => getScreenshotFileName(args, 'failed', tr
 
 const getFailedScreenshotName = (args) => getScreenshotFileName(args, 'failed');
 
+const baseConfig = {
+  nodeResolve: true,
+  browserStartTimeout: 60000, // default 30000
+  testsStartTimeout: 60000, // default 10000
+  testsFinishTimeout: 120000, // default 20000,
+  testFramework: {
+    path: require.resolve('@web/test-runner-mocha/dist/autorun-es2018.js'),
+    config: {
+      ui: 'bdd',
+      timeout: '20000'
+    }
+  },
+  testRunnerHtml,
+  filterBrowserLogs
+};
+
 const createSnapshotTestsConfig = (config) => {
   const packages = getSnapshotTestPackages();
   const groups = getSnapshotTestGroups(packages);
 
   return {
+    ...baseConfig,
     ...config,
-    nodeResolve: true,
-    groups,
-    testRunnerHtml,
-    filterBrowserLogs
+    groups
   };
 };
 
@@ -271,20 +285,9 @@ const createUnitTestsConfig = (config) => {
   const groups = getUnitTestGroups(packages);
 
   return {
+    ...baseConfig,
     ...config,
-    nodeResolve: true,
-    browserStartTimeout: 60000, // default 30000
-    testsStartTimeout: 60000, // default 10000
-    testsFinishTimeout: 120000, // default 20000
-    testFramework: {
-      config: {
-        ui: 'bdd',
-        timeout: '10000'
-      }
-    },
-    groups,
-    testRunnerHtml,
-    filterBrowserLogs
+    groups
   };
 };
 
@@ -306,13 +309,8 @@ const createVisualTestsConfig = (theme) => {
   );
 
   return {
+    ...baseConfig,
     concurrency: 1,
-    nodeResolve: true,
-    testFramework: {
-      config: {
-        timeout: '20000' // default 2000
-      }
-    },
     browsers: [
       sauceLabsLauncher({
         browserName: 'chrome',
@@ -332,9 +330,7 @@ const createVisualTestsConfig = (theme) => {
         update: process.env.TEST_ENV === 'update'
       })
     ],
-    groups,
-    testRunnerHtml,
-    filterBrowserLogs
+    groups
   };
 };
 
