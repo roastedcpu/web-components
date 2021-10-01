@@ -396,6 +396,7 @@ class GridElement extends ElementMixin(
   constructor() {
     super();
     this.addEventListener('animationend', this._onAnimationEnd);
+    this.__rowWidthObserver = new ResizeObserver(() => this.__updateRowWidth());
   }
 
   /** @protected */
@@ -613,6 +614,12 @@ class GridElement extends ElementMixin(
       this.__itemsReceived();
     });
     return rows;
+  }
+
+  /** @private */
+  __updateRowWidth() {
+    const rowWidth = [...this.$.sizer.children].reduce((width, cell) => width + cell.offsetWidth, 0);
+    this.$.table.style.setProperty('--_grid-row-width', rowWidth + 'px');
   }
 
   /** @private */
@@ -850,6 +857,9 @@ class GridElement extends ElementMixin(
 
     // Sizer rows
     this._updateRow(this.$.sizer, columnTree[columnTree.length - 1]);
+    // Observe size changes of sizer cells
+    this.__rowWidthObserver.disconnect();
+    [...this.$.sizer.children].forEach((cell) => this.__rowWidthObserver.observe(cell));
 
     this._resizeHandler();
     this._frozenCellsChanged();
