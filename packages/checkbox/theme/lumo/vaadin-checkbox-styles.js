@@ -14,8 +14,8 @@ registerStyles(
       outline: none;
     }
 
-    :host([has-label]) [part='label'] {
-      margin: 0.1875em 0.875em 0.1875em 0.375em;
+    :host([has-label]) [part='label'] ::slotted(*) {
+      padding: 0.1875em 0.875em 0.1875em 0.375em;
     }
 
     [part='checkbox'] {
@@ -28,6 +28,13 @@ registerStyles(
       transition: transform 0.2s cubic-bezier(0.12, 0.32, 0.54, 2), background-color 0.15s;
       line-height: 1.2;
       cursor: var(--lumo-clickable-cursor);
+    }
+
+    [part='checkbox'] ::slotted(input) {
+      top: -0.1875em;
+      left: -0.1875em;
+      width: calc(100% + 0.1875em * 2);
+      height: calc(100% + 0.1875em * 2);
     }
 
     :host([indeterminate]) [part='checkbox'],
