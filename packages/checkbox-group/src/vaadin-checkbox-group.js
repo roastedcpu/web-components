@@ -53,7 +53,7 @@ import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mix
  * @mixes DirMixin
  * @element vaadin-checkbox-group
  */
-class CheckboxGroupElement extends ThemableMixin(DirMixin(PolymerElement)) {
+class CheckboxGroup extends ThemableMixin(DirMixin(PolymerElement)) {
   static get template() {
     return html`
       <style>
@@ -402,6 +402,6 @@ class CheckboxGroupElement extends ThemableMixin(DirMixin(PolymerElement)) {
   }
 }
 
-customElements.define(CheckboxGroupElement.is, CheckboxGroupElement);
+customElements.define(CheckboxGroup.is, CheckboxGroup);
 
-export { CheckboxGroupElement };
+export { CheckboxGroup };
