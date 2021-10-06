@@ -48,7 +48,7 @@ import { ControlStateMixin } from '@vaadin/vaadin-control-state-mixin/vaadin-con
  * @mixes ElementMixin
  * @mixes ThemableMixin
  */
-class DetailsElement extends ControlStateMixin(ElementMixin(ThemableMixin(PolymerElement))) {
+class Details extends ControlStateMixin(ElementMixin(ThemableMixin(PolymerElement))) {
   static get template() {
     return html`
       <style>
@@ -133,7 +133,7 @@ class DetailsElement extends ControlStateMixin(ElementMixin(ThemableMixin(Polyme
 
   ready() {
     super.ready();
-    const uniqueId = (DetailsElement._uniqueId = 1 + DetailsElement._uniqueId || 0);
+    const uniqueId = (Details._uniqueId = 1 + Details._uniqueId || 0);
     this._contentId = `${this.constructor.is}-content-${uniqueId}`;
     // prevent Shift + Tab on content from host blur
     this._collapsible.addEventListener('keydown', (e) => {
@@ -172,6 +172,6 @@ class DetailsElement extends ControlStateMixin(ElementMixin(ThemableMixin(Polyme
   }
 }
 
-customElements.define(DetailsElement.is, DetailsElement);
+customElements.define(Details.is, Details);
 
-export { DetailsElement };
+export { Details };
