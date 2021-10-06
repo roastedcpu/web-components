@@ -23,7 +23,7 @@ registerStyles(
  * @extends CustomFieldElement
  * @private
  */
-class DateTimePickerCustomFieldElement extends CustomFieldElement {
+class DateTimePickerCustomField extends CustomFieldElement {
   static get is() {
     return 'vaadin-date-time-picker-custom-field';
   }
@@ -45,4 +45,4 @@ class DateTimePickerCustomFieldElement extends CustomFieldElement {
   }
 }
 
-customElements.define(DateTimePickerCustomFieldElement.is, DateTimePickerCustomFieldElement);
+customElements.define(DateTimePickerCustomField.is, DateTimePickerCustomField);

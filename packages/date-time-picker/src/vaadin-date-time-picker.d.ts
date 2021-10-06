@@ -55,7 +55,7 @@ import { DateTimePickerEventMap, DateTimePickerI18n } from './interfaces';
  * @fires {CustomEvent} invalid-changed - Fired when the `invalid` property changes.
  * @fires {CustomEvent} value-changed - Fired when the `value` property changes.
  */
-declare class DateTimePickerElement extends ElementMixin(ThemableMixin(HTMLElement)) {
+declare class DateTimePicker extends ElementMixin(ThemableMixin(HTMLElement)) {
   /**
    * The name of the control, which is submitted with the form data.
    */
@@ -212,21 +212,21 @@ declare class DateTimePickerElement extends ElementMixin(ThemableMixin(HTMLEleme
 
   addEventListener<K extends keyof DateTimePickerEventMap>(
     type: K,
-    listener: (this: DateTimePickerElement, ev: DateTimePickerEventMap[K]) => void,
+    listener: (this: DateTimePicker, ev: DateTimePickerEventMap[K]) => void,
     options?: boolean | AddEventListenerOptions
   ): void;
 
   removeEventListener<K extends keyof DateTimePickerEventMap>(
     type: K,
-    listener: (this: DateTimePickerElement, ev: DateTimePickerEventMap[K]) => void,
+    listener: (this: DateTimePicker, ev: DateTimePickerEventMap[K]) => void,
     options?: boolean | EventListenerOptions
   ): void;
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'vaadin-date-time-picker': DateTimePickerElement;
+    'vaadin-date-time-picker': DateTimePicker;
   }
 }
 
-export { DateTimePickerElement };
+export { DateTimePicker };
